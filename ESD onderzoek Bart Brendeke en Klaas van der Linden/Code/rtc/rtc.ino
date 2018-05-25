@@ -1,3 +1,5 @@
+
+
 #include <DS1307.h>
 unsigned long previousMillis = 0;
 unsigned long currentMillis = 0;
@@ -15,9 +17,9 @@ void setup() {
   previousMillis = millis();
  
 
-  /*rtc.setDOW(SATURDAY);        // Stel de dag in (DOW staat voor DayOFtheWeek)
-    rtc.setTime(10, 23, 15);     // Stel de tijd in, in 24u format. Uur-min-sec
-    rtc.setDate(17, 3, 2018);   // Stel de datum in. Dag-maad-jaar*/
+    /*rtc.setDOW(FRIDAY);        // Stel de dag in (DOW staat voor DayOFtheWeek)
+    rtc.setTime(8, 46, 45);     // Stel de tijd in, in 24u format. Uur-min-sec
+    rtc.setDate(25, 5, 2018);   // Stel de datum in. Dag-maad-jaar*/
 
 }
 
@@ -25,7 +27,7 @@ void loop() {
 
     currentMillis = millis();
     if(currentMillis - previousMillis >= delayTime){
-      previousMillis = currentMillis
+      previousMillis = currentMillis;
 
       // Stuur dag
       Serial.print(rtc.getDOWStr());
