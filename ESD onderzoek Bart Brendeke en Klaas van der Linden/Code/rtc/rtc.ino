@@ -1,5 +1,7 @@
 #include <DS1307.h>
-
+unsigned long previousMillis = 0;
+unsigned long currentMillis = 0;
+int delayTime = 1000;
 
 // DS1307 rtc([SDA], [SCL]);
 DS1307 rtc(A4, A5);
@@ -10,7 +12,7 @@ void setup() {
 
 
   Serial.begin(9600);
-
+  previousMillis = millis();
  
 
   /*rtc.setDOW(SATURDAY);        // Stel de dag in (DOW staat voor DayOFtheWeek)
@@ -20,18 +22,22 @@ void setup() {
 }
 
 void loop() {
-   // Stuur dag
-    Serial.print(rtc.getDOWStr());
-    Serial.print(" ");
 
-    // Stuur datum
-    Serial.print(rtc.getDateStr());
-    Serial.print(" -- ");
+    currentMillis = millis();
+    if(currentMillis - previousMillis >= delayTime){
+      previousMillis = currentMillis
 
-    // Stuur tijd
-    Serial.println(rtc.getTimeStr());
+      // Stuur dag
+      Serial.print(rtc.getDOWStr());
+      Serial.print(" ");
+  
+      // Stuur datum
+      Serial.print(rtc.getDateStr());
+      Serial.print(" -- ");
+  
+      // Stuur tijd
+      Serial.println(rtc.getTimeStr());
+    }
+   
 
-
-
-    delay (1000); 
 }
